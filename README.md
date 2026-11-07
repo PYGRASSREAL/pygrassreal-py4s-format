@@ -110,8 +110,8 @@ Zero-dependency Python implementation for packing, unpacking, and CLI batch oper
 # Unpack a .py4s container into component layers
 python python/py4s_codec.py unpack model.py4s -o ./output/
 
-# Pack canonical splat, deformation weights, and collider into a single .py4s container
-python python/py4s_codec.py pack --spz canonical.spz --deformation deform.bin --collider hitbox.glb --metadata metadata.json -o model.py4s
+# Pack visual splat, deformation weights, and collider into a single .py4s container
+python python/py4s_codec.py pack --spz visual.bin --deformation deform.bin --collider hitbox.bin --metadata metadata.json -o model.py4s
 
 # Inspect file contents and spatiotemporal metadata
 python python/py4s_codec.py info model.py4s
