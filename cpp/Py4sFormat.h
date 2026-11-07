@@ -115,3 +115,4 @@ namespace PyGrassReal
 		bool HasThumbnail() const { return ThumbnailData.Num() > 0; }
 	};
 }
+

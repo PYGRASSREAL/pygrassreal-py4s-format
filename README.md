@@ -155,3 +155,4 @@ if (PyGrassReal::FPy4sReader::ReadFromFile(TEXT("D:/Models/kinnaree.py4s"), Cont
 * **DIP Thailand Registration:** Recorded with the Department of Intellectual Property (DIP), Thailand, under the Computer Program category. See [docs/COPYRIGHT_RECORDATION_GUIDE.md](docs/COPYRIGHT_RECORDATION_GUIDE.md) for full application templates.
 * **International Protection:** Protected automatically across 181 countries under the **Berne Convention**.
 * **License:** Permissive open-source [MIT License](LICENSE).
+

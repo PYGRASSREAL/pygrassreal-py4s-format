@@ -19,13 +19,13 @@ export const PY4S_FLAG_HEXPLANE_DEFORM = 0x2;
 export const PY4S_FLAG_COLLIDER_DEFORMABLE = 0x4;
 export const PY4S_FLAG_HAS_ANIMATED_PREVIEW = 0x10;
 
-export function isPy4sBuffer(buf: ArrayBuffer | ArrayBufferView | null | undefined): boolean {
+export function isPy4sBuffer(buf: ArrayBufferLike | ArrayBufferView | null | undefined): boolean {
   if (!buf) return false;
   const byteLength = 'byteLength' in buf ? buf.byteLength : 0;
   if (byteLength < 4) return false;
   const uint8 = 'buffer' in buf
     ? new Uint8Array(buf.buffer, buf.byteOffset, Math.min(4, buf.byteLength))
-    : new Uint8Array((buf as ArrayBuffer).slice(0, 4));
+    : new Uint8Array(buf as ArrayBuffer, 0, Math.min(4, byteLength));
   return uint8[0] === 0x50 && uint8[1] === 0x59 && uint8[2] === 0x34 && uint8[3] === 0x53; // 'PY4S'
 }
 
@@ -78,13 +78,17 @@ export class Py4sCodec {
   /**
    * Unpacks a .py4s binary buffer into constituent components.
    */
-  public static unpack(buffer: ArrayBuffer | Uint8Array): Py4sContainerData {
-    const bytes = buffer instanceof Uint8Array ? buffer : new Uint8Array(buffer);
+  public static unpack(buffer: ArrayBufferLike | ArrayBufferView): Py4sContainerData {
+    const bytes = buffer instanceof Uint8Array
+      ? buffer
+      : ('buffer' in buffer
+          ? new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
+          : new Uint8Array(buffer as ArrayBuffer));
     if (bytes.byteLength < PY4S_HEADER_SIZE) {
       throw new Error(`Invalid PY4S buffer: size ${bytes.byteLength} < ${PY4S_HEADER_SIZE}`);
     }
 
-    const view = new DataView(bytes.buffer, bytes.byteOffset, bytes.byteLength);
+    const view = new DataView(bytes.buffer as ArrayBuffer, bytes.byteOffset, bytes.byteLength);
 
     // Validate Magic 'PY4S'
     if (
@@ -248,8 +252,14 @@ export class Py4sCodec {
 }
 
 /** The canonical visual may be PLY even though the section is named spzData. */
-export function getPy4sBaseVisual(buffer: ArrayBuffer): { buffer: ArrayBuffer; format: 'ply' | 'spz' } {
-  const bytes = isPy4sBuffer(buffer) ? Py4sCodec.unpack(buffer).spzData : new Uint8Array(buffer);
+export function getPy4sBaseVisual(buffer: ArrayBufferLike | ArrayBufferView): { buffer: ArrayBuffer; format: 'ply' | 'spz' } {
+  const bytes = isPy4sBuffer(buffer)
+    ? Py4sCodec.unpack(buffer).spzData
+    : (buffer instanceof Uint8Array
+        ? buffer
+        : ('buffer' in buffer
+            ? new Uint8Array(buffer.buffer, buffer.byteOffset, buffer.byteLength)
+            : new Uint8Array(buffer as ArrayBuffer)));
   const isPly = bytes[0] === 0x70 && bytes[1] === 0x6c && bytes[2] === 0x79 &&
     (bytes[3] === 0x0a || bytes[3] === 0x0d);
   if (!bytes.byteLength) throw new Error('PY4S container has no visual splat data');

@@ -156,3 +156,4 @@ WebP, MP4, or GIF sequence for quick thumbnail preview in operating systems, con
 * **Specification Standard:** PyGrassReal AI 4D Dynamic Specification.
 * **Department of Intellectual Property (DIP) Thailand:** Recorded under Computer Program category.
 * **International Protection:** Protected globally across 181 countries under the **Berne Convention**.
+

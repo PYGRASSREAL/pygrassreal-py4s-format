@@ -45,7 +45,7 @@ describe('PY4S canonical visual', () => {
   it('rejects truncated or out of bounds sections before a renderer sees them', () => {
     const packed = pack(new Uint8Array([1, 2, 3, 4]));
     expect(() => Py4sCodec.unpack(packed.slice(0, 130))).toThrow(/bounds/);
-    new DataView(packed.buffer, packed.byteOffset, packed.byteLength).setBigUint64(16, BigInt(Number.MAX_SAFE_INTEGER) + 1n, true);
+    new DataView(packed.buffer as ArrayBuffer, packed.byteOffset, packed.byteLength).setBigUint64(16, BigInt(Number.MAX_SAFE_INTEGER) + 1n, true);
     expect(() => Py4sCodec.unpack(packed)).toThrow(/bounds/);
   });
 
