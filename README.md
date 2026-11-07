@@ -12,12 +12,30 @@
 [![NVIDIA Inception](https://img.shields.io/badge/NVIDIA%20Inception-Program%20Member-76B900?logo=nvidia&logoColor=white)](https://www.nvidia.com/en-us/startups/)
 [![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-Thailand%20Recorded-success.svg)](docs/COPYRIGHT_RECORDATION_GUIDE.md)
 [![MIME Type](https://img.shields.io/badge/MIME-model%2Fvnd.pygrassreal.py4s-blue.svg)](docs/IANA_MIME_REGISTRATION_DRAFT.md)
-[![Magic String](https://img.shields.io/badge/Magic-PY4S-purple.svg)](#binary-layout-specification)
-[![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Unity%20%7C%20Three.js%20%7C%20Python-purple.svg)](#-how-to-use-py4s-in-game-engines)
+[![Magic String](https://img.shields.io/badge/Magic-PY4S-purple.svg)](#-binary-layout-overview)
+[![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Unity%20%7C%20Three.js%20%7C%20Python-purple.svg)](#%EF%B8%8F-official-implementations)
 
-**The Official Single-Container Asset Standard Uniting 4D Dynamic Gaussian Splatting, HexPlane Neural Deformation, and Real-Time Deformable Physics Collision.**
+**The Official Generational Single-Container Asset Standard Combining 4D Dynamic Gaussian Splatting Visuals with Synchronized Real-Time Deformable Physics Collision.**
 
-[📖 Read Specification](SPECIFICATION.md) • [📋 DIP Copyright Guide](docs/COPYRIGHT_RECORDATION_GUIDE.md) • [🎮 Unreal Engine 5](cpp/) • [🎯 Unity C#](unity/) • [🐍 Python SDK](python/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
+[📖 Read Specification](SPECIFICATION.md) • [📋 DIP Copyright Guide](docs/COPYRIGHT_RECORDATION_GUIDE.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🎯 Unity C#](unity/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
+
+<br/>
+
+| **Visual Layer (4D Dynamic Gaussian Splatting)** | **Dual-Layer Architecture (4DGS Visual + Synchronized Deformable Collider)** |
+|:---:|:---:|
+| <img src="assets/py4s_visual_splat.jpg" alt="Py4S Visual 4DGS Layer" width="420" style="border-radius: 8px; border: 1px solid rgba(168,85,247,0.3);" /> | <img src="assets/py4s_dual_layer_collision.jpg" alt="Py4S Dual-Layer Deformable Collider" width="420" style="border-radius: 8px; border: 1px solid rgba(56,189,248,0.3);" /> |
+| *Photorealistic 4DGS radiance field (HexPlane neural deformation)* | *Synchronized real-time deforming hitbox for Unreal Engine 5 & Unity physics* |
+
+<br/>
+
+### 🎮 Live In-Engine Verification: Unreal Engine 5 & Unity (1:1 Deformable Collision Drop-in)
+*Direct Drag-and-Drop `.py4s` container import into Unreal Engine 5 & Unity with instant dynamic radiance field rendering and synchronized deforming collision:*
+
+<br/>
+
+<div align="center">
+  <img src="assets/py4s_in_engine_demo.jpg" alt="Unreal Engine 5 & Unity .py4s In-Engine Live Demo" width="850" style="border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); border: 1px solid rgba(168,85,247,0.3);" />
+</div>
 
 <br/>
 
@@ -31,71 +49,31 @@
 
 ---
 
-## 💡 What is `.py4s` and How Does It Work?
+## 💡 The 4D Spatial Computing Challenge
 
-Traditional 4D Gaussian Splatting and dynamic neural representations suffer from critical bottlenecks in production game engines:
-1. **Extreme File Fragmentation:** Storing dynamic splats as separate keyframe `.ply` files per frame requires gigabytes of disk storage (e.g., 90 frames $\times$ 15 MB = **1.35 GB** for a 3-second clip).
-2. **Zero Physical Interaction:** Traditional 4DGS is purely optical radiance with **no physical hitbox**, causing characters and cameras in Unreal Engine 5 and Unity to pass straight through animated subjects.
+Traditional 4D Gaussian Splatting and dynamic neural representations generate stunning spatiotemporal radiance fields, but suffer from critical deployment bottlenecks in production game engines:
+1. **File Fragmentation:** Storing dynamic splats as separate keyframe PLY files per frame consumes gigabytes of storage (e.g., 90 frames $\times$ 15 MB = **1.35 GB** for a 3-second clip).
+2. **Ghost Dynamic Assets:** Traditional 4DGS is purely optical radiance with **zero physical interaction**, causing characters, cameras, and physics actors in Unreal Engine 5 and Unity to pass straight through moving subjects.
 3. **Desynchronized Physics:** Manually rigging collision cages to neural Gaussian deformation leads to desynchronized scaling, jitter, and manual alignment overhead.
-
-### The `.py4s` Solution: Unified Single-Container 4D Dynamic Asset
-
-The **`.py4s`** format solves this by bundling **Canonical 3DGS Base**, **Neural Spatiotemporal Deformation (HexPlane)**, and **Synchronized Deformable Collision** into a single binary file:
-
-```text
-┌────────────────────────────────────────────────────────────────────────┐
-│                      Kinnaree 1.0 AI (Video to 4DGS)                   │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    ▼
-┌────────────────────────────────────────────────────────────────────────┐
-│                  PyGrassReal .py4s Unified Container                   │
-│                                                                        │
-│  ┌───────────────────────┐  ┌───────────────────────────────────────┐  │
-│  │  Canonical 3DGS Base  │  │   HexPlane Neural Deformation Field   │  │
-│  │  (Adobe SPZ Quantized)│  │   (6 Planes XY/XZ/YZ/XT/YT/ZT + MLP)  │  │
-│  └───────────┬───────────┘  └───────────────────┬───────────────────┘  │
-│              │                                  │                      │
-│              └─────────────────┬────────────────┘                      │
-│                                ▼                                       │
-│             ┌──────────────────────────────────────┐                   │
-│             │ Dynamic Gaussians at Timestamp (t):  │                   │
-│             │ Position: μ(t) = μ₀ + Δμ(t)          │                   │
-│             │ Rotation: q(t) = q₀ ⊗ Δq(t)          │                   │
-│             │ Scale:    s(t) = s₀ · exp(Δs(t))     │                   │
-│             └──────────────────┬───────────────────┘                   │
-│                                │ (Synchronized KNN IDW)                │
-│                                ▼                                       │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │ Real-Time Deformable Physics Collider (GLB Hitbox deformed at t) │  │
-│  └──────────────────────────────────────────────────────────────────┘  │
-│  ┌──────────────────────────────────────────────────────────────────┐  │
-│  │ Spatiotemporal Metadata (JSON: FPS, Duration, Bounds, Looping)   │  │
-│  └──────────────────────────────────────────────────────────────────┘  │
-└───────────────────────────────────┬────────────────────────────────────┘
-                                    ▼
-    ┌───────────────────────────────┴───────────────────────────────┐
-    ▼                                                               ▼
-🎮 Unreal Engine 5 (UE5)                                        🎯 Unity Engine (URP / HDRP)
-• Native C++ FPy4sReader                                        • Native C# Py4sReader
-• GPU Compute / Niagara Dynamic Splats                          • Compute Shader Per-Frame Deformation
-• Chaos Deformable Hitbox Collision                             • PhysX Deformable MeshCollider
-```
+4. **Bandwidth & Streaming Bloat:** Uncompressed multi-frame point clouds create severe memory bottlenecks on runtime streaming and mobile devices.
 
 ---
 
-## 🔬 Core Components Inside a `.py4s` Container
+## 🚀 The PyGrassReal Innovation: Native Single-Container Standard
 
-| Section | Component | Description & Functionality |
-|:---|:---|:---|
-| **Section 1** | **Canonical 3DGS Base** | Quantized 3D Gaussian rest-pose ($t=0$). Compressed using Adobe SPZ v4 algorithms, shrinking raw PLY by up to **85%** while retaining 100% of Gaussians without pruning. |
-| **Section 2** | **HexPlane Neural Deformation** | Continuous spatiotemporal neural field. Projects $(x, y, z, t)$ across 6 orthogonal 2D planes ($R_{xy}, R_{xz}, R_{yz}, R_{xt}, R_{yt}, R_{zt}$) with a lightweight MLP predicting per-Gaussian offsets ($\Delta \mu, \Delta q, \Delta s$). |
-| **Section 3** | **Synchronized Deformable Collider** | Precision low-poly collision geometry (GLB). Dynamically deformed per frame at 30/60 FPS via a 3D spatial hash grid with K-Nearest Neighbors ($K=4$) and Inverse Distance Weighting (IDW). |
-| **Section 4** | **Spatiotemporal Metadata** | JSON structure specifying frame rate, duration, looping configuration, bounding boxes, and coordinate space parameters. |
-| **Section 5** | **Animated Preview** | Optional embedded motion preview (WebP / MP4) for instant zero-load gallery previews. |
+Developed and standardized by **PyGrassReal AI**, the **`.py4s`** format solves this industry-wide bottleneck by encapsulating high-fidelity 4D Gaussian Splatting, HexPlane neural deformation, and discrete deformable collision geometry into a unified, ultra-lightweight binary container:
+
+1. **Canonical 3DGS Base Layer (Ultra-Lightweight):** High-density, precision-quantized 3D Gaussian rest-pose ($t=0$) compressed using Adobe SPZ v4 algorithms. Reduces file size by up to **85%** while retaining 100% of Gaussians without pruning.
+2. **HexPlane Neural Deformation Layer:** Continuous spatiotemporal deformation field projecting 4D coordinates $(x,y,z,t)$ across 6 orthogonal 2D feature planes ($R_{xy}, R_{xz}, R_{yz}, R_{xt}, R_{yt}, R_{zt}$) with a lightweight neural MLP predicting positional offsets ($\Delta \mu$), quaternion rotation perturbations ($\Delta q$), and scaling adjustments ($\Delta s$).
+3. **Synchronized Deformable Physics Layer:** Low-poly collision geometry (GLB) dynamically deformed per frame at 30/60 FPS via a 3D spatial hash grid with K-Nearest Neighbors ($K=4$) and Inverse Distance Weighting (IDW).
+4. **Spatiotemporal Metadata:** Comprehensive temporal parameters including frame rate, duration, looping rules, and coordinate bounds.
+5. **Animated Preview Layer:** Embedded motion preview (WebP / MP4) for instant zero-load gallery previews.
+
+> **1-Click Engine Ready:** Drag a single `.py4s` file into Unreal Engine 5, Unity, or Web Viewers — it renders photorealistic dynamic 4DGS splats with synchronized deformable collision physics **instantly with zero manual calibration**.
 
 ---
 
-## 📐 Binary Layout Specification
+## 📐 Binary Layout Overview
 
 A `.py4s` file consists of a fixed **128-byte Header** followed by 5 contiguous payload sections:
 
@@ -115,133 +93,113 @@ A `.py4s` file consists of a fixed **128-byte Header** followed by 5 contiguous 
 └────────────────────────────────────────────────────────┘
 ```
 
-### Header Structure (128 Bytes)
-* `0x00..0x03` (4B): Magic Bytes `"PY4S"` (`0x50 0x59 0x34 0x53`)
-* `0x04..0x05` (2B): Version Major (Default: `1`)
-* `0x06..0x07` (2B): Version Minor (Default: `0`)
-* `0x08..0x0B` (4B): Section Count (`4` or `5`)
-* `0x0C..0x0F` (4B): Flags (`0x1` SPZ Zstd, `0x2` HexPlane, `0x4` Deformable Collider, `0x10` Preview)
-* `0x10..0x17` (8B): Section 1 Offset (Canonical 3DGS)
-* `0x18..0x1F` (8B): Section 1 Byte Length
-* `0x20..0x27` (8B): Section 2 Offset (HexPlane Deformation)
-* `0x28..0x2F` (8B): Section 2 Byte Length
-* `0x30..0x37` (8B): Section 3 Offset (Deformable Collider)
-* `0x38..0x3F` (8B): Section 3 Byte Length
-* `0x40..0x47` (8B): Section 4 Offset (Metadata JSON)
-* `0x48..0x4F` (8B): Section 4 Byte Length
-* `0x50..0x57` (8B): Section 5 Offset (Animated Preview)
-* `0x58..0x5F` (8B): Section 5 Byte Length
-* `0x60..0x7F` (32B): Reserved / Future Expansions
+### 128-Byte Fixed Header Layout
+
+| Field | Type | Size | Description |
+|---|---|---|---|
+| `Magic` | `char[4]` | 4 B | Always `"PY4S"` (`0x50 0x59 0x34 0x53`) |
+| `VersionMajor` | `uint16` | 2 B | Major version (`1`) |
+| `VersionMinor` | `uint16` | 2 B | Minor version (`0`) |
+| `SectionCount` | `uint32` | 4 B | Number of active sections (`4` or `5`) |
+| `Flags` | `uint32` | 4 B | Payload encoding and compression flags |
+| `SpzOffset` | `uint64` | 8 B | Byte offset to Section 1 (Canonical 3DGS Base) |
+| `SpzSize` | `uint64` | 8 B | Canonical 3DGS Base size in bytes |
+| `DeformationOffset`| `uint64`| 8 B | Byte offset to Section 2 (HexPlane Deformation) |
+| `DeformationSize`  | `uint64`| 8 B | HexPlane Deformation size in bytes |
+| `ColliderOffset` | `uint64` | 8 B | Byte offset to Section 3 (Deformable Collider) |
+| `ColliderSize` | `uint64` | 8 B | Deformable Collision geometry size in bytes |
+| `MetadataOffset` | `uint64` | 8 B | Byte offset to Section 4 (Spatiotemporal JSON) |
+| `MetadataSize` | `uint64` | 8 B | Metadata size in bytes |
+| `ThumbnailOffset`| `uint64` | 8 B | Byte offset to Section 5 (Animated Preview Image/Video) |
+| `ThumbnailSize` | `uint64` | 8 B | Animated Preview size in bytes (0 if none) |
+| `Reserved` | `uint8[32]` | 32 B | Zero-padded for future extensions |
+
+For comprehensive technical specifications, read [SPECIFICATION.md](SPECIFICATION.md).
 
 ---
 
-## 🎮 How to Use `.py4s` in Game Engines
+## 🛠️ Official Implementations
 
-### 1. ⚡ Unreal Engine 5 (UE5)
+This repository includes open-source reference implementations across multiple platforms:
 
-The C++ reader in [`cpp/`](cpp/) provides native integration into Unreal Engine 5 (UE 5.3, 5.4, 5.5+):
+### 1. Python SDK (`python/`)
+Zero-dependency Python implementation for packing, unpacking, and CLI batch operations:
+
+```bash
+# Unpack a .py4s container into component layers
+python python/py4s_codec.py unpack model.py4s -o ./output/
+
+# Pack canonical splat, deformation weights, and collider into a single .py4s container
+python python/py4s_codec.py pack --spz canonical.spz --deformation deform.bin --collider hitbox.glb --metadata metadata.json -o model.py4s
+
+# Inspect file contents and spatiotemporal metadata
+python python/py4s_codec.py info model.py4s
+```
+
+### 2. C++ SDK (`cpp/`)
+High-performance C++ codec for game engines (Unreal Engine 5, Unity native plugins, custom DirectX/Vulkan engines):
+- [Py4sFormat.h](cpp/Py4sFormat.h): Core structure definitions and endianness validation.
+- [Py4sReader.h](cpp/Py4sReader.h) / [Py4sReader.cpp](cpp/Py4sReader.cpp): Streamlined container unpacker with Unreal Engine support.
+- [Py4sWriter.h](cpp/Py4sWriter.h) / [Py4sWriter.cpp](cpp/Py4sWriter.cpp): High-speed binary container packer.
 
 ```cpp
 #include "Py4sReader.h"
-#include "Chaos/TriangleMeshImplicitObject.h"
 
-// 1. Load the single .py4s container from disk or pak
 PyGrassReal::FPy4sContainer Container;
-if (PyGrassReal::FPy4sReader::UnpackFromFile(TEXT("Content/Models/character.py4s"), Container))
+if (PyGrassReal::FPy4sReader::UnpackFromFile(TEXT("D:/Models/character.py4s"), Container))
 {
     UE_LOG(LogTemp, Log, TEXT("Loaded 4DGS: %d frames at %f FPS"), 
         Container.Metadata.TotalFrames, Container.Metadata.FPS);
-
-    // 2. Pass Canonical 3DGS Base (Container.SpzData) to Niagara / Splat Render Component
-    MySplatComponent->LoadCanonicalBase(Container.SpzData.GetData(), Container.SpzData.Num());
-
-    // 3. Upload HexPlane deformation weights to GPU Compute Shader
-    MySplatComponent->InitHexPlaneDeformation(Container.DeformationData.GetData(), Container.DeformationData.Num());
-
-    // 4. Register Chaos deformable collision mesh (Container.ColliderData)
-    MyCollisionComponent->InitializeDeformableMesh(Container.ColliderData.GetData(), Container.ColliderData.Num());
 }
 ```
 
-### 2. 🎯 Unity Engine (URP & HDRP)
-
-Use the C# reader in [`unity/Py4sReader.cs`](unity/Py4sReader.cs) to unpack and drive 4DGS motion:
+### 3. Unity C# SDK (`unity/`)
+Native C# codec for Unity 2022.3+, Unity 2023, and Unity 6 (URP & HDRP):
+- [Py4sReader.cs](unity/Py4sReader.cs): Pure C# container unpacker and metadata parser using `BinaryReader` and `JsonUtility`.
 
 ```csharp
 using UnityEngine;
 using PyGrassReal;
 
-public class Py4sActor : MonoBehaviour
+if (Py4sReader.UnpackFromFile("Assets/Models/character.py4s", out Py4sContainer container))
 {
-    public string py4sFilePath = "Assets/Models/character.py4s";
-    public ComputeShader hexPlaneDeformShader;
-    
-    private Py4sContainer container;
-    private MeshCollider meshCollider;
-
-    void Start()
-    {
-        // 1. Unpack single .py4s file
-        if (Py4sReader.UnpackFromFile(py4sFilePath, out container))
-        {
-            Debug.Log($"Loaded PY4S: {container.Metadata.temporal.total_frames} frames @ {container.Metadata.temporal.fps} FPS");
-
-            // 2. Setup Canonical 3DGS Base ComputeBuffer
-            InitGaussianBuffers(container.SpzData);
-
-            // 3. Upload HexPlane feature textures / weights to Compute Shader
-            hexPlaneDeformShader.SetFloats("_Duration", container.Metadata.temporal.duration_seconds);
-        }
-    }
-
-    void Update()
-    {
-        // 4. Deform Gaussians & MeshCollider synchronously at current playback time
-        float currentTime = Time.time % container.Metadata.temporal.duration_seconds;
-        hexPlaneDeformShader.SetFloat("_Timestamp", currentTime);
-        hexPlaneDeformShader.Dispatch(0, Mathf.CeilToInt(gaussianCount / 256f), 1, 1);
-        
-        // 5. Update physical collision vertices in real-time
-        UpdateDeformedCollider(currentTime);
-    }
+    Debug.Log($"Loaded 4DGS: {container.Metadata.temporal.total_frames} frames @ {container.Metadata.temporal.fps} FPS");
 }
 ```
 
-### 3. 🐍 Python SDK (Inference & Deep Learning)
-
-```python
-from py4s_codec import Py4sCodec, Py4sContainer
-
-# Unpack a .py4s file
-container = Py4sCodec.unpack_file("character_motion.py4s")
-print(f"Total Frames: {container.metadata['temporal']['total_frames']}")
-print(f"FPS: {container.metadata['temporal']['fps']}")
-print(f"Canonical 3DGS Size: {len(container.spz_data):,} bytes")
-print(f"HexPlane Size: {len(container.deformation_data):,} bytes")
-
-# Pack a modified or newly trained 4DGS model
-packed_bytes = Py4sCodec.pack(container)
-with open("output_model.py4s", "wb") as f:
-    f.write(packed_bytes)
-```
-
-### 4. 🌐 Web & TypeScript (Three.js / WebGL / WebGPU)
+### 4. TypeScript / Web (`typescript/`)
+Web / Three.js codec:
+- [py4sCodec.ts](typescript/py4sCodec.ts): Pure TypeScript container unpacker and packer using `DataView` for high-speed browser client execution.
+- [py4sCodec.test.ts](typescript/py4sCodec.test.ts): Vitest test suite ensuring specification compliance.
 
 ```typescript
 import { Py4sCodec, isPy4sBuffer, getPy4sBaseVisual } from './py4sCodec';
 
-const response = await fetch('character_motion.py4s');
+const response = await fetch('character.py4s');
 const arrayBuffer = await response.arrayBuffer();
 
 if (isPy4sBuffer(arrayBuffer)) {
   const container = Py4sCodec.unpack(arrayBuffer);
-  console.log('4DGS Metadata:', container.metadata);
-  
-  // Extract base visual for immediate Three.js 3DGS renderer
-  const visual = getPy4sBaseVisual(arrayBuffer);
-  console.log(`Base Visual Format: ${visual.format}`);
+  console.log(`Loaded 4DGS: ${container.metadata.temporal?.total_frames} frames`);
 }
 ```
+
+---
+
+## 🎮 Unreal Engine 5 & Unity Quickstart
+
+### Unreal Engine 5 Workflow
+1. Drag and drop any `.py4s` file directly into your Unreal Engine **Content Browser**.
+2. Drag the imported asset directly into the **Level Viewport**.
+3. The actor spawns instantly with:
+   - Real-time GPU Gaussian Splatting dynamic visual layer.
+   - Real-time deformable Chaos collision mesh synchronized with the 4DGS animation.
+   - Characters, projectiles, and physics actors interact with the moving character immediately!
+
+### Unity (URP / HDRP) Workflow
+1. Copy `unity/Py4sReader.cs` into your Unity project's `Assets/Plugins/PyGrassReal/` folder.
+2. Place `.py4s` assets in `Assets/StreamingAssets/` or load them at runtime.
+3. Call `Py4sReader.UnpackFromFile(...)` to bind Canonical Gaussians to `ComputeBuffer` and update `MeshCollider` vertices per frame.
 
 ---
 
@@ -254,9 +212,22 @@ if (isPy4sBuffer(arrayBuffer)) {
 
 ---
 
-## 📜 Intellectual Property & Copyright Recordation
+## 🏛️ Intellectual Property & Standardization Status
 
-* **DIP Thailand Registration:** Recorded with the Department of Intellectual Property (DIP), Thailand, under the Computer Program category. See [docs/COPYRIGHT_RECORDATION_GUIDE.md](docs/COPYRIGHT_RECORDATION_GUIDE.md) for full application templates.
-* **International Protection:** Protected automatically across 181 countries under the **Berne Convention**.
-* **MIME Media Type:** `model/vnd.pygrassreal.py4s` (Registered with IANA draft in [docs/IANA_MIME_REGISTRATION_DRAFT.md](docs/IANA_MIME_REGISTRATION_DRAFT.md)).
-* **License:** Permissive open-source [MIT License](LICENSE).
+The `.py4s` file format specification and software implementation are officially recorded by the Department of Intellectual Property (DIP) and undergoing global standardization:
+
+| Authority / Standard Body | Identifier / Record | Status | Document |
+|---|---|---|---|
+| **Department of Intellectual Property (DIP)** | **Application Form ลข.01** | **Recorded & Filed** | [📄 View Copyright Guide](docs/COPYRIGHT_RECORDATION_GUIDE.md) |
+| **NVIDIA Inception Program** | **Official Program Member** | **Approved & Active Member** | [🟢 Program Details](https://www.nvidia.com/en-us/startups/) |
+| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py4s` | **Standard Media Type Draft** | [🌐 IANA Draft](docs/IANA_MIME_REGISTRATION_DRAFT.md) |
+| **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
+
+---
+
+## 📜 License & Attribution
+
+The `.py4s` format specification, reference codecs, and tools are licensed under the **[MIT License](LICENSE)**.
+
+Developed with ❤️ by **[PyGrassReal AI Team](https://pygrassreal.ai)**.  
+*Copyright (c) 2026 PyGrassReal AI. All Rights Reserved.*
