@@ -21,24 +21,6 @@
 
 <br/>
 
-| **Visual Layer (4D Dynamic Gaussian Splatting)** | **Dual-Layer Architecture (4DGS Visual + Synchronized Deformable Collider)** |
-|:---:|:---:|
-| <img src="assets/py4s_visual_splat.jpg" alt="Py4S Visual 4DGS Layer" width="420" style="border-radius: 8px; border: 1px solid rgba(168,85,247,0.3);" /> | <img src="assets/py4s_dual_layer_collision.jpg" alt="Py4S Dual-Layer Deformable Collider" width="420" style="border-radius: 8px; border: 1px solid rgba(56,189,248,0.3);" /> |
-| *Photorealistic 4DGS radiance field (HexPlane neural deformation)* | *Synchronized real-time deforming hitbox for Unreal Engine 5 & Unity physics* |
-
-<br/>
-
-### 🎮 Live In-Engine Verification: Unreal Engine 5 & Unity (1:1 Deformable Collision Drop-in)
-*Direct Drag-and-Drop `.py4s` container import into Unreal Engine 5 & Unity with instant dynamic radiance field rendering and synchronized deforming collision:*
-
-<br/>
-
-<div align="center">
-  <img src="assets/py4s_in_engine_demo.jpg" alt="Unreal Engine 5 & Unity .py4s In-Engine Live Demo" width="850" style="border-radius: 10px; box-shadow: 0 8px 30px rgba(0,0,0,0.5); border: 1px solid rgba(168,85,247,0.3);" />
-</div>
-
-<br/>
-
 <a href="https://www.nvidia.com/en-us/startups/">
   <img src="assets/nvidia-inception-program-badge-rgb-for-screen.svg" alt="NVIDIA Inception Program Member" width="340" style="background: #ffffff; border-radius: 8px; padding: 10px 16px; box-shadow: 0 4px 16px rgba(0,0,0,0.25);" />
 </a>
