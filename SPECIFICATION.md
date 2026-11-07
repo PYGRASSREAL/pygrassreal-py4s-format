@@ -4,7 +4,7 @@
 > **Copyright**: Copyright (c) 2026 **PyGrassReal AI** (https://pygrassreal.ai). All Rights Reserved.  
 > **Brand / Originator**: **PyGrassReal**  
 > **AI Engine**: **Kinnaree 1.0** — Video-to-4DGS Spatial Computing Engine  
-> **Lineage**: **4D Dynamic Series (`.py4s`)** evolving from foundational `.py3s`  
+> **Target Runtimes**: Unreal Engine 5, Unity (URP/HDRP), WebGL / WebGPU, Python PyTorch  
 > **Format Name**: PyGrassReal 4D Splat Single Container (`.py4s`)  
 > **MIME Media Type**: `model/vnd.pygrassreal.py4s`  
 > **Specification Version**: `1.0.0`  
@@ -16,22 +16,50 @@
 
 ## 🏛️ 1. Origin & Purpose
 
-In the spatial computing and generative AI ecosystem:
-1. **`.py3s` (S-Series):** Standard for **Static 3D Gaussian Splatting** combined with rigid physics collision (powered by Matchanu AI).
-2. **`.py3m` (M-Series):** Standard for **3D Polygonal Mesh & PBR Textures** with manufacturing solid geometry (powered by Nilapat AI).
-3. **`.py4s` (4D Dynamic Series):** The breakthrough evolution into the **temporal dimension ($t$)** through **4D Gaussian Splatting (4DGS)** — encapsulating photorealistic motion, fluid dynamics, character deformations, and synchronized real-time collision in a single, ultra-lightweight binary container (powered by **Kinnaree 1.0 AI**).
+The **`.py4s` (4D Dynamic Splat)** format is the single-container standard engineered for **4D Gaussian Splatting (4DGS)** with spatiotemporal neural deformation and real-time interactive physics collision (powered by **Kinnaree 1.0 AI**).
+
+Unlike static splats or raw frame sequences, `.py4s` is designed from the ground up for modern real-time game engines (**Unreal Engine 5** and **Unity**) as well as WebGL/WebGPU and deep learning pipelines:
+* **Zero Keyframe Redundancy:** Replaces multi-gigabyte sequences of individual `.ply` files with a single rest-pose Canonical 3D Gaussian Base ($t=0$) coupled with neural HexPlane trajectory weights.
+* **Synchronized Physical Interaction:** Bundles a synchronized deformable physics collision geometry (GLB) deformed per frame via K-Nearest Neighbors (KNN) to provide 1:1 physical collision against moving 4D characters.
+* **Game Engine Native:** Supported directly via C++ in Unreal Engine 5 (Niagara + Chaos Physics) and C# in Unity (Compute Shader + PhysX).
 
 ```text
-                               🌟 PyGrassReal AI 🌟
-                                         │
-        ┌───────────────────────────────┼───────────────────────────────┐
-        ▼                               ▼                               ▼
-   🔴 S-Series (.py3s)            🔵 M-Series (.py3m)             🟣 4D-Series (.py4s)
-   Static 3DGS Container          Polygonal Mesh Container        4D Dynamic Splat Container
-   • Engine: Matchanu 2.0         • Engine: Nilapat 2.5           • Engine: Kinnaree 1.0
-   • Visual: Compressed 3DGS      • Visual: High-Detail PBR Mesh  • Visual: 4DGS (HexPlane + MLP)
-   • Physics: 1:1 Static Hull     • Physics: 1:1 Solid Collision  • Physics: Real-Time Deformable Hitbox
-   • MIME: ...pygrassreal.py3s    • MIME: ...pygrassreal.py3m     • MIME: ...pygrassreal.py4s
+┌────────────────────────────────────────────────────────────────────────┐
+│                      Kinnaree 1.0 AI (Video to 4DGS)                   │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    ▼
+┌────────────────────────────────────────────────────────────────────────┐
+│                  PyGrassReal .py4s Unified Container                   │
+│                                                                        │
+│  ┌───────────────────────┐  ┌───────────────────────────────────────┐  │
+│  │  Canonical 3DGS Base  │  │   HexPlane Neural Deformation Field   │  │
+│  │  (Adobe SPZ Quantized)│  │   (6 Planes XY/XZ/YZ/XT/YT/ZT + MLP)  │  │
+│  └───────────┬───────────┘  └───────────────────┬───────────────────┘  │
+│              │                                  │                      │
+│              └─────────────────┬────────────────┘                      │
+│                                ▼                                       │
+│             ┌──────────────────────────────────────┐                   │
+│             │ Dynamic Gaussians at Timestamp (t):  │                   │
+│             │ Position: μ(t) = μ₀ + Δμ(t)          │                   │
+│             │ Rotation: q(t) = q₀ ⊗ Δq(t)          │                   │
+│             │ Scale:    s(t) = s₀ · exp(Δs(t))     │                   │
+│             └──────────────────┬───────────────────┘                   │
+│                                │ (Synchronized KNN IDW)                │
+│                                ▼                                       │
+│  ┌──────────────────────────────────────────────────────────────────┐  │
+│  │ Real-Time Deformable Physics Collider (GLB Hitbox deformed at t) │  │
+│  └──────────────────────────────────────────────────────────────────┘  │
+│  ┌──────────────────────────────────────────────────────────────────┐  │
+│  │ Spatiotemporal Metadata (JSON: FPS, Duration, Bounds, Looping)   │  │
+│  └──────────────────────────────────────────────────────────────────┘  │
+└───────────────────────────────────┬────────────────────────────────────┘
+                                    ▼
+    ┌───────────────────────────────┴───────────────────────────────┐
+    ▼                                                               ▼
+🎮 Unreal Engine 5 (UE5)                                        🎯 Unity Engine (URP / HDRP)
+• Native C++ FPy4sReader                                        • Native C# Py4sReader
+• GPU Compute / Niagara Dynamic Splats                          • Compute Shader Per-Frame Deformation
+• Chaos Deformable Hitbox Collision                             • PhysX Deformable MeshCollider
 ```
 
 ---
@@ -156,4 +184,3 @@ WebP, MP4, or GIF sequence for quick thumbnail preview in operating systems, con
 * **Specification Standard:** PyGrassReal AI 4D Dynamic Specification.
 * **Department of Intellectual Property (DIP) Thailand:** Recorded under Computer Program category.
 * **International Protection:** Protected globally across 181 countries under the **Berne Convention**.
-
