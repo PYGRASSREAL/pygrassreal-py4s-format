@@ -5,7 +5,6 @@
 > **แบรนด์/ผู้พัฒนา**: **PyGrassReal**  
 > **เอนจิ้น AI ผู้สร้าง**: **Kinnaree 1.0** — Video-to-4DGS Spatial Computing Engine  
 > **ชื่อฟอร์แมต**: PyGrassReal 4D Splat Single Container (`.py4s`)  
-> **MIME Media Type**: `model/vnd.pygrassreal.py4s`  
 > **เวอร์ชันสเปก**: `1.0.0`  
 > **Magic String**: `"PY4S"` (`0x50 0x59 0x34 0x53`)  
 > **Endianness**: Little-Endian (LE)  
@@ -124,9 +123,8 @@
 
 ---
 
-## 6. ทรัพย์สินทางปัญญาและการคุ้มครองทางกฎหมาย (Intellectual Property & Legal Protection)
+## 6. สัญญาอนุญาตและความเป็นเจ้าของสิทธิ์ (License & Rights)
 
-* **การแจ้งข้อมูลลิขสิทธิ์**: ยื่นแจ้งข้อมูลลิขสิทธิ์ต่อ **กรมทรัพย์สินทางปัญญา (DIP) กระทรวงพาณิชย์ ประเทศไทย** ในประเภทงานวรรณกรรม (โปรแกรมคอมพิวเตอร์) ตามแบบ ลข.01 (ดูรายละเอียดใน [docs/COPYRIGHT_RECORDATION_GUIDE.md](docs/COPYRIGHT_RECORDATION_GUIDE.md))
-* **การคุ้มครองระดับสากล**: ได้รับความคุ้มครองอัตโนมัติใน 181 ประเทศภาคีสมาชิกตาม **อนุสัญญากรุงเบิร์น (Berne Convention)**
-* **MIME Media Type**: ยื่นร่างลงทะเบียนกับ **Internet Assigned Numbers Authority (IANA)** ในชื่อ `model/vnd.pygrassreal.py4s`
+* **ผู้พัฒนาและเจ้าของสิทธิ์**: ออกแบบและพัฒนาโดย **PyGrassReal AI**
+* **การคุ้มครองตามกฎหมาย**: ได้รับความคุ้มครองในฐานะงานสร้างสรรค์ต้นฉบับภายใต้ **อนุสัญญากรุงเบิร์น (Berne Convention)**
 * **สัญญาอนุญาต**: เผยแพร่แบบโอเพนซอร์สภายใต้สัญญาอนุญาต [MIT License](LICENSE)

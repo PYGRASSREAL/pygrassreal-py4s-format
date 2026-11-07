@@ -10,14 +10,12 @@
 [![Specification](https://img.shields.io/badge/Specification-v1.0.0-blue.svg)](SPECIFICATION.md)
 [![License: MIT](https://img.shields.io/badge/License-MIT-green.svg)](LICENSE)
 [![NVIDIA Inception](https://img.shields.io/badge/NVIDIA%20Inception-Program%20Member-76B900?logo=nvidia&logoColor=white)](https://www.nvidia.com/en-us/startups/)
-[![Copyright DIP](https://img.shields.io/badge/Copyright%20DIP-Thailand%20Recorded-success.svg)](docs/COPYRIGHT_RECORDATION_GUIDE.md)
-[![MIME Type](https://img.shields.io/badge/MIME-model%2Fvnd.pygrassreal.py4s-blue.svg)](docs/IANA_MIME_REGISTRATION_DRAFT.md)
 [![Magic String](https://img.shields.io/badge/Magic-PY4S-purple.svg)](#-binary-layout-overview)
 [![Engines](https://img.shields.io/badge/Engines-Unreal%205%20%7C%20Unity%20%7C%20Three.js%20%7C%20Python-purple.svg)](#%EF%B8%8F-official-implementations)
 
 **The Official Generational Single-Container Asset Standard Combining 4D Dynamic Gaussian Splatting Visuals with Synchronized Real-Time Deformable Physics Collision.**
 
-[📖 Read Specification](SPECIFICATION.md) • [📋 DIP Copyright Guide](docs/COPYRIGHT_RECORDATION_GUIDE.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🎯 Unity C#](unity/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
+[📖 Read Specification](SPECIFICATION.md) • [🐍 Python SDK](python/) • [⚡ C++ Implementation](cpp/) • [🎯 Unity C#](unity/) • [🌐 TypeScript / Web](typescript/) • [🏛️ Official Platform](https://pygrassreal.ai)
 
 <br/>
 
@@ -184,16 +182,12 @@ if (isPy4sBuffer(arrayBuffer)) {
 
 ---
 
-## 🏛️ Intellectual Property & Standardization Status
+## 🏛️ Ecosystem & Program Status
 
-The `.py4s` file format specification and software implementation are officially recorded by the Department of Intellectual Property (DIP) and undergoing global standardization:
-
-| Authority / Standard Body | Identifier / Record | Status | Document |
-|---|---|---|---|
-| **Department of Intellectual Property (DIP)** | **Application Form ลข.01** | **Recorded & Filed** | [📄 View Copyright Guide](docs/COPYRIGHT_RECORDATION_GUIDE.md) |
-| **NVIDIA Inception Program** | **Official Program Member** | **Approved & Active Member** | [🟢 Program Details](https://www.nvidia.com/en-us/startups/) |
-| **Internet Assigned Numbers Authority (IANA)** | **MIME:** `model/vnd.pygrassreal.py4s` | **Standard Media Type Draft** | [🌐 IANA Draft](docs/IANA_MIME_REGISTRATION_DRAFT.md) |
-| **Creator & Rights Holder** | **PyGrassReal AI** | **Exclusive Proprietary & Commercial Rights** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
+| Organization / Program | Status | Reference |
+|---|---|---|
+| **NVIDIA Inception Program** | **Official Program Member** | [🟢 Program Details](https://www.nvidia.com/en-us/startups/) |
+| **Creator & Rights Holder** | **PyGrassReal AI** | [🌐 pygrassreal.ai](https://pygrassreal.ai) |
 
 ---
 
