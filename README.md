@@ -61,15 +61,14 @@ Traditional 4D Gaussian Splatting and dynamic neural representations generate st
 
 ## 🚀 The PyGrassReal Innovation: Native Single-Container Standard
 
-Developed and standardized by **PyGrassReal AI**, the **`.py4s`** format solves this industry-wide bottleneck by encapsulating high-fidelity 4D Gaussian Splatting, HexPlane neural deformation, and discrete deformable collision geometry into a unified, ultra-lightweight binary container:
+Developed and standardized by **PyGrassReal AI**, the **`.py4s`** format solves this industry-wide bottleneck by encapsulating high-fidelity 4D Gaussian Splatting, temporal deformation, and synchronized collision geometry into a unified, ultra-lightweight binary container:
 
-1. **Canonical 3DGS Base Layer (Ultra-Lightweight):** High-density, precision-quantized 3D Gaussian rest-pose ($t=0$) compressed using Adobe SPZ v4 algorithms. Reduces file size by up to **85%** while retaining 100% of Gaussians without pruning.
-2. **HexPlane Neural Deformation Layer:** Continuous spatiotemporal deformation field projecting 4D coordinates $(x,y,z,t)$ across 6 orthogonal 2D feature planes ($R_{xy}, R_{xz}, R_{yz}, R_{xt}, R_{yt}, R_{zt}$) with a lightweight neural MLP predicting positional offsets ($\Delta \mu$), quaternion rotation perturbations ($\Delta q$), and scaling adjustments ($\Delta s$).
-3. **Synchronized Deformable Physics Layer:** Low-poly collision geometry (GLB) dynamically deformed per frame at 30/60 FPS via a 3D spatial hash grid with K-Nearest Neighbors ($K=4$) and Inverse Distance Weighting (IDW).
-4. **Spatiotemporal Metadata:** Comprehensive temporal parameters including frame rate, duration, looping rules, and coordinate bounds.
-5. **Animated Preview Layer:** Embedded motion preview (WebP / MP4) for instant zero-load gallery previews.
+1. **Visual Layer (4D Gaussian Splatting):** High-density 4DGS payload compressed with SPZ algorithms, reducing file size by up to **85%** while retaining 100% of Gaussians.
+2. **Deformation Layer:** Temporal motion field driving dynamic Gaussian transformations across time.
+3. **Physics Layer (Deformable Collider):** Precision collision hitbox that deforms synchronously with the moving character in real-time.
+4. **Metadata & Preview:** Embedded spatiotemporal metadata (FPS, duration, looping) and animated preview.
 
-> **1-Click Engine Ready:** Drag a single `.py4s` file into Unreal Engine 5, Unity, or Web Viewers — it renders photorealistic dynamic 4DGS splats with synchronized deformable collision physics **instantly with zero manual calibration**.
+> **1-Click Engine Ready:** Drag a single `.py4s` file into Unreal Engine 5 or Unity — it renders photorealistic dynamic 4DGS splats with synchronized deformable collision physics **instantly with zero manual calibration**.
 
 ---
 
