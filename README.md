@@ -184,15 +184,6 @@ if (isPy4sBuffer(arrayBuffer)) {
 
 ---
 
-## 📊 File Size & Performance Comparison
-
-| Asset Type | Raw 4DGS Keyframes (90 PLY frames) | Uncompressed `.py4s` (Raw PLY) | `.py4s` with Adobe SPZ v4 | Size Reduction | Target Engines |
-|:---|:---:|:---:|:---:|:---:|:---:|
-| **Cybernetic Character** | 1,080 MB | 11.87 MB | **2.24 MB** | **-99.8% vs raw frames** | Unreal Engine 5, Unity, Web |
-| **Robotic Arm 3D Printing**| 1,260 MB | 14.12 MB | **2.68 MB** | **-99.8% vs raw frames** | Unreal Engine 5, Unity, Web |
-
----
-
 ## 🏛️ Intellectual Property & Standardization Status
 
 The `.py4s` file format specification and software implementation are officially recorded by the Department of Intellectual Property (DIP) and undergoing global standardization:
