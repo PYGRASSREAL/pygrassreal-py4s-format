@@ -62,15 +62,15 @@ A `.py4s` file consists of a fixed **128-byte Header** followed by 5 contiguous 
 ┌────────────────────────────────────────────────────────┐
 │             PY4S File Header (128 Bytes)               │  Offset 0x00
 ├────────────────────────────────────────────────────────┤
-│ Section 1: Canonical 3DGS Layer (SPZ / PLY Base)       │  Offset = SpzOffset (normally 0x80)
+│     Section 1: Visual Layer (Compressed 4DGS Payload)  │  Offset = SpzOffset (default 0x80)
 ├────────────────────────────────────────────────────────┤
-│ Section 2: HexPlane Neural Deformation Layer           │  Offset = DeformationOffset
+│     Section 2: Deformation Layer (Temporal Motion)     │  Offset = DeformationOffset
 ├────────────────────────────────────────────────────────┤
-│ Section 3: Deformable Physics Collider Layer (GLB)     │  Offset = ColliderOffset
+│     Section 3: Physics Layer (Deformable Collider)     │  Offset = ColliderOffset
 ├────────────────────────────────────────────────────────┤
-│ Section 4: Spatiotemporal Metadata Layer (JSON)        │  Offset = MetadataOffset
+│     Section 4: Metadata Layer (Spatiotemporal)         │  Offset = MetadataOffset
 ├────────────────────────────────────────────────────────┤
-│ Section 5: Animated Preview Layer (WebP/MP4, Optional) │  Offset = ThumbnailOffset
+│     Section 5: Visual Preview Layer (Optional Preview) │  Offset = ThumbnailOffset
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -83,16 +83,16 @@ A `.py4s` file consists of a fixed **128-byte Header** followed by 5 contiguous 
 | `VersionMinor` | `uint16` | 2 B | Minor version (`0`) |
 | `SectionCount` | `uint32` | 4 B | Number of active sections (`4` or `5`) |
 | `Flags` | `uint32` | 4 B | Payload encoding and compression flags |
-| `SpzOffset` | `uint64` | 8 B | Byte offset to Section 1 (Canonical 3DGS Base) |
-| `SpzSize` | `uint64` | 8 B | Canonical 3DGS Base size in bytes |
-| `DeformationOffset`| `uint64`| 8 B | Byte offset to Section 2 (HexPlane Deformation) |
-| `DeformationSize`  | `uint64`| 8 B | HexPlane Deformation size in bytes |
+| `SpzOffset` | `uint64` | 8 B | Byte offset to Section 1 (Compressed 4DGS Payload) |
+| `SpzSize` | `uint64` | 8 B | Visual Layer size in bytes |
+| `DeformationOffset`| `uint64`| 8 B | Byte offset to Section 2 (Temporal Motion Layer) |
+| `DeformationSize`  | `uint64`| 8 B | Deformation Layer size in bytes |
 | `ColliderOffset` | `uint64` | 8 B | Byte offset to Section 3 (Deformable Collider) |
 | `ColliderSize` | `uint64` | 8 B | Deformable Collision geometry size in bytes |
-| `MetadataOffset` | `uint64` | 8 B | Byte offset to Section 4 (Spatiotemporal JSON) |
+| `MetadataOffset` | `uint64` | 8 B | Byte offset to Section 4 (Spatiotemporal Descriptor) |
 | `MetadataSize` | `uint64` | 8 B | Metadata size in bytes |
-| `ThumbnailOffset`| `uint64` | 8 B | Byte offset to Section 5 (Animated Preview Image/Video) |
-| `ThumbnailSize` | `uint64` | 8 B | Animated Preview size in bytes (0 if none) |
+| `ThumbnailOffset`| `uint64` | 8 B | Byte offset to Section 5 (Visual Preview Layer) |
+| `ThumbnailSize` | `uint64` | 8 B | Visual Preview size in bytes (0 if none) |
 | `Reserved` | `uint8[32]` | 32 B | Zero-padded for future extensions |
 
 For comprehensive technical specifications, read [SPECIFICATION.md](SPECIFICATION.md).

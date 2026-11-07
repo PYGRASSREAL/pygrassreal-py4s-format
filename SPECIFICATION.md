@@ -34,15 +34,15 @@
 ┌────────────────────────────────────────────────────────┐
 │             PY4S File Header (128 Bytes)               │  Offset 0x00
 ├────────────────────────────────────────────────────────┤
-│ Section 1: Canonical 3DGS Layer (SPZ / PLY Base)       │  Offset = SpzOffset (ปกติ 0x80)
+│     Section 1: Visual Layer (Compressed 4DGS Payload)  │  Offset = SpzOffset (ปกติ 0x80)
 ├────────────────────────────────────────────────────────┤
-│ Section 2: HexPlane Neural Deformation Layer           │  Offset = DeformationOffset
+│     Section 2: Deformation Layer (Temporal Motion)     │  Offset = DeformationOffset
 ├────────────────────────────────────────────────────────┤
-│ Section 3: Deformable Physics Collider Layer (GLB)     │  Offset = ColliderOffset
+│     Section 3: Physics Layer (Deformable Collider)     │  Offset = ColliderOffset
 ├────────────────────────────────────────────────────────┤
-│ Section 4: Spatiotemporal Metadata Layer (JSON)        │  Offset = MetadataOffset
+│     Section 4: Metadata Layer (Spatiotemporal)         │  Offset = MetadataOffset
 ├────────────────────────────────────────────────────────┤
-│ Section 5: Animated Preview Layer (WebP/MP4, Optional) │  Offset = ThumbnailOffset
+│     Section 5: Visual Preview Layer (Optional Preview) │  Offset = ThumbnailOffset
 └────────────────────────────────────────────────────────┘
 ```
 
@@ -59,23 +59,23 @@
 | `0x06` | 2 | `uint16` | `VersionMinor` | เวอร์ชันย่อย (ปัจจุบัน = `0`) |
 | `0x08` | 4 | `uint32` | `SectionCount` | จำนวน sections (ปกติ = `4` หรือ `5`) |
 | `0x0C` | 4 | `uint32` | `Flags` | บิตแฟล็กการเข้ารหัสและการบีบอัดข้อมูล |
-| `0x10` | 8 | `uint64` | `SpzOffset` | Byte offset จุดเริ่มต้นของ Canonical 3DGS Base |
-| `0x18` | 8 | `uint64` | `SpzSize` | ขนาดของ Canonical 3DGS Base (bytes) |
-| `0x20` | 8 | `uint64` | `DeformationOffset`| Byte offset จุดเริ่มต้นของ HexPlane Deformation |
-| `0x28` | 8 | `uint64` | `DeformationSize`  | ขนาดของ HexPlane Deformation (bytes) |
-| `0x30` | 8 | `uint64` | `ColliderOffset`   | Byte offset จุดเริ่มต้นของ Deformable Collider |
-| `0x38` | 8 | `uint64` | `ColliderSize`     | ขนาดของ Deformable Collider (bytes) |
-| `0x40` | 8 | `uint64` | `MetadataOffset`   | Byte offset จุดเริ่มต้นของ Spatiotemporal Metadata |
-| `0x48` | 8 | `uint64` | `MetadataSize`     | ขนาดของ Metadata JSON (bytes) |
-| `0x50` | 8 | `uint64` | `ThumbnailOffset`  | Byte offset ของ Animated Preview (0 ถ้าไม่มี) |
-| `0x58` | 8 | `uint64` | `ThumbnailSize`    | ขนาดของ Animated Preview (0 ถ้าไม่มี) |
+| `0x10` | 8 | `uint64` | `SpzOffset` | Byte offset จุดเริ่มต้นของ Visual Layer (Compressed 4DGS Payload) |
+| `0x18` | 8 | `uint64` | `SpzSize` | ขนาดของ Visual Layer (bytes) |
+| `0x20` | 8 | `uint64` | `DeformationOffset`| Byte offset จุดเริ่มต้นของ Deformation Layer (Temporal Motion) |
+| `0x28` | 8 | `uint64` | `DeformationSize`  | ขนาดของ Deformation Layer (bytes) |
+| `0x30` | 8 | `uint64` | `ColliderOffset`   | Byte offset จุดเริ่มต้นของ Physics Layer (Deformable Collider) |
+| `0x38` | 8 | `uint64` | `ColliderSize`     | ขนาดของ Physics Layer (bytes) |
+| `0x40` | 8 | `uint64` | `MetadataOffset`   | Byte offset จุดเริ่มต้นของ Metadata Layer (Spatiotemporal) |
+| `0x48` | 8 | `uint64` | `MetadataSize`     | ขนาดของ Metadata Layer (bytes) |
+| `0x50` | 8 | `uint64` | `ThumbnailOffset`  | Byte offset ของ Visual Preview Layer (0 ถ้าไม่มี) |
+| `0x58` | 8 | `uint64` | `ThumbnailSize`    | ขนาดของ Visual Preview Layer (0 ถ้าไม่มี) |
 | `0x60` | 32 | `uint8[32]` | `Reserved`      | สงวนไว้สำหรับส่วนขยายอนาคต (zero padding) |
 
 ### ความหมายของบิตแฟล็ก (`Flags` 32-bit):
-* `0x0001` - `PY4S_FLAG_SPZ_ZSTD`: ส่วน Canonical 3DGS Base บีบอัดด้วย Adobe SPZ / Zstandard
-* `0x0002` - `PY4S_FLAG_HEXPLANE_DEFORM`: มีข้อมูล HexPlane Neural Deformation Weights
-* `0x0004` - `PY4S_FLAG_COLLIDER_DEFORMABLE`: เรขาคณิตการชนถูกแมปพร้อมเปลี่ยนรูปตามเวลาแบบ 1:1
-* `0x0010` - `PY4S_FLAG_HAS_ANIMATED_PREVIEW`: มีชุดข้อมูลภาพเคลื่อนไหวพรีวิวประกอบ
+* `0x0001` - `PY4S_FLAG_SPZ_ZSTD`: บิตแฟล็กการบีบอัดข้อมูลความหนาแน่นสูง
+* `0x0002` - `PY4S_FLAG_HEXPLANE_DEFORM`: บิตแฟล็กระบุชุดข้อมูลการเคลื่อนไหวตามเวลา
+* `0x0004` - `PY4S_FLAG_COLLIDER_DEFORMABLE`: บิตแฟล็กโครงเรขาคณิตการชนเปลี่ยนรูปตามเวลา
+* `0x0010` - `PY4S_FLAG_HAS_ANIMATED_PREVIEW`: บิตแฟล็กมีชุดข้อมูลภาพตัวอย่างเคลื่อนไหว
 
 ---
 
@@ -95,7 +95,7 @@
   },
   "canonical_3dgs": {
     "gaussian_count": 65536,
-    "format": "spz",
+    "format": "py4s_base",
     "sh_degree": 0
   },
   "deformation": {
