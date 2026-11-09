@@ -1,60 +1,55 @@
 # IANA Media Type Registration Application for `model/vnd.pygrassreal.py4s`
 
-**To:** iana-mime-comment@iana.org  
-**Subject:** Registration of media type model/vnd.pygrassreal.py4s  
+**To:** iana-mime@iana.org  
+**Subject:** model/vnd.pygrassreal.py4s registration request  
 
 ---
 
-### Type name:
-`model`
+```text
+Name: Prachaya Buapad
 
-### Subtype name:
-`vnd.pygrassreal.py4s`
+Email: admin@pygrassreal.ai
 
-### Required parameters:
-None.
+Media type name: model
 
-### Optional parameters:
-* `version`: A string indicating the container format version (e.g. `1.0.0`).
-* `temporal_fps`: An integer or float indicating default playback frames-per-second (e.g. `30`).
+Media subtype name: vnd.pygrassreal.py4s
 
-### Encoding considerations:
-Binary.
+Required parameters: N/A
 
-### Security considerations:
-A `.py4s` container encapsulates dense 3D Gaussian Splatting point coordinates, HexPlane neural deformation plane tensors or MLP weights, physics collision meshes, JSON metadata, and an optional visual preview. Parsers MUST validate byte offsets and payload sizes against the fixed 128-byte header to prevent buffer overrun vulnerabilities. No active executable code or macros are stored within the container.
+Optional parameters: N/A
 
-### Interoperability considerations:
-Designed as an open, single-container specification for real-time 4D Gaussian Splatting (4DGS) with synchronized deformable physics collision. Parsers must support IEEE-754 Little-Endian floating-point formats.
+Encoding considerations: binary
+Binary container format using little endian byte ordering with fixed 128-byte header.
 
-### Published specification:
-https://github.com/PYGRASSREAL/pygrassreal-py4s-format/blob/main/SPECIFICATION.md
+Security considerations: The .py4s media type defines a single-container binary asset format combining 4D Dynamic Gaussian Splatting radiance fields, temporal motion deformation fields, and synchronized deformable collision geometry. It does not contain active or executable code, scripts, or macros. Parsers should validate header magic ("PY4S"), version bounds, and section payload offsets/sizes to prevent buffer overruns or out-of-bounds memory access.
 
-### Applications that use this media type:
-* PyGrassReal AI 4D Platform (Kinnaree 1.0)
-* Unreal Engine 5 via PyGrassReal 4DGS In-Engine Plugin
-* WebGL / WebGPU Viewers (Three.js, Babylon.js)
-* Omniverse / OpenUSD Spatial Computing Workflows
+Interoperability considerations: Designed for cross-platform 4D Dynamic Gaussian Splatting and spatial computing engines including Unreal Engine 5, Unity, Web (Three.js / WebGL / WebGPU), and Python machine learning pipelines. Standardized with little-endian byte ordering.
 
-### Fragment identifier conventions:
-None defined.
+Published specification: https://github.com/PYGRASSREAL/pygrassreal-py4s-format/blob/main/SPECIFICATION.md
 
-### Additional information:
-* **Magic number(s):** ASCII `PY4S` (`0x50 0x59 0x34 0x53`) at byte offset 0.
-* **File extension(s):** `.py4s`
-* **Macintosh file type code(s):** None.
+Applications which use this media: PyGrassReal AI 4D Platform (Kinnaree 1.0), Unreal Engine 5 via PyGrassReal 4DGS In-Engine Plugin, Unity, Three.js Web Viewers, and 4D generative AI pipelines.
 
-### Person & email address to contact for further information:
-* **Name:** PyGrassReal AI Engineering Team
-* **Email:** admin@pygrassreal.ai
-* **Website:** https://pygrassreal.ai
+Fragment identifier considerations: N/A
 
-### Intended usage:
-COMMON
+Restrictions on usage: None
 
-### Restrictions on usage:
-None.
+Provisional registration? (standards tree only): No
 
-### Author:
-PyGrassReal AI
+Additional information:
+1. Deprecated alias names for this type: N/A
+2. Magic number(s): ASCII "PY4S" (hex: 0x50 0x59 0x34 0x53) at byte offset 0
+3. File extension(s): py4s
+4. Macintosh file type code: N/A
+5. Object Identifiers: N/A
 
+General Comments: Standardized and maintained by PyGrassReal AI (https://pygrassreal.ai). Related to the established model/vnd.pygrassreal.py3s standard (IANA #1461427), extending spatial assets into 4D temporal motion and deformable real-time physics.
+
+Person to contact for further information:
+1. Name: Prachaya Buapad
+2. Email: admin@pygrassreal.ai
+
+Intended usage: COMMON
+Intended for common exchange of 4D Dynamic Gaussian Splats with native 1:1 deformable physics collision in Spatial Computing and real-time game engines.
+
+Author/Change controller: PyGrassReal AI (Prachaya Buapad), Founder & Chief Systems Architect. Contact: admin@pygrassreal.ai, Website: https://pygrassreal.ai
+```
